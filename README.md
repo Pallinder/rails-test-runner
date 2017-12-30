@@ -36,7 +36,7 @@ Right click on folder in explorer menu and select `Rails Test Runner: Run all te
 ### Run all tests
 cmd-shift-p `railsTestRunner.runAllTests`
 
-### 0.1
+### 0.0.1
 
 Initial release
 

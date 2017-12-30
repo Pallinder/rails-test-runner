@@ -3,10 +3,10 @@
 Run your rails tests smoothly from within Visual Studio Code
 
 ## Quickly run your tests
-\!\[Commands\]\(images/rails-test-runner-commands.gif\)
+![Commands](images/rails-test-runner-commands.gif)
 
 ## Run them through menues as well
-\!\[Context menues\]\(images/rails-test-runner-menu.gif\)
+![Menu](images/rails-test-runner-menu.gif)
 
 ## Project goal
 To allow users to easily and quickly run either individual tests

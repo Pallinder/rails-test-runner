@@ -3,7 +3,8 @@
   "displayName": "Rails Test Runner",
   "description": "Easily run your rails tests from within Visual Studio Code (vscode)",
   "version": "0.0.1",
-  "publisher": "pallinder",
+  "publisher": "davidpallinder",
+  "repository": "https://github.com/Pallinder/rails-test-runner",
   "engines": {
     "vscode": "^1.19.0"
   },
@@ -13,11 +14,8 @@
   ],
   "keywords": [
     "rails",
-    "ROR",
     "Ruby on Rails",
     "rspec",
-    "minitest",
-    "cucumber",
     "test"
   ],
   "activationEvents": [

@@ -1,0 +1,92 @@
+{
+  "name": "rails-spec-runner",
+  "displayName": "Rails Spec Runner",
+  "description": "Run rspec in your Rails project",
+  "version": "0.0.1",
+  "publisher": "pallinder",
+  "engines": {
+    "vscode": "^1.19.0"
+  },
+  "categories": ["Other", "Languages"],
+  "keywords": [
+        "rails",
+        "ROR",
+        "Ruby on Rails",
+        ".erb",
+        "rspec",
+        "test"
+    ],
+  "activationEvents": [
+    "workspaceContains:bin/rails",
+    "workspaceContains:script/rails"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.runAllSpecs",
+        "title": "Run all specs"
+      },
+      {
+        "command": "extension.runAllSpecsInFolder",
+        "title": "Run all specs in folder"
+      },
+      {
+        "command": "extension.runSpec",
+        "title": "Run all specs in file"
+      },
+      {
+        "command": "extension.runSpecFromLine",
+        "title": "Run specs starting from the current line"
+      },
+      {
+        "command": "extension.runLastSpec",
+        "title": "Run the last spec(s) again"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceLangId == ruby",
+          "command": "extension.runSpec",
+          "group": "railsSpecRunner@1"
+        },
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "extension.runAllSpecsInFolder",
+          "group": "railsSpecRunner@2"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "resourceLangId == ruby",
+          "command": "extension.runSpec",
+          "group": "railsSpecRunner@1"
+        },
+        {
+          "when": "resourceLangId == ruby",
+          "command": "extension.runSpecFromLine",
+          "group": "railsSpecRunner@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.6.1",
+    "vscode": "^1.1.6",
+    "@types/node": "^7.0.43",
+    "@types/mocha": "^2.2.42"
+  },
+  "dependencies": {
+    "prettier": "^1.9.2",
+    "tslint": "^5.8.0",
+    "tslint-config-airbnb": "^5.4.2"
+  }
+}

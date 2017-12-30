@@ -15,25 +15,27 @@ export function activate(context: ExtensionContext): void {
         terminalHandler.destroyTerminal(terminal);
     });
 
-    commands.registerCommand('extension.runAllSpecs', () => {
-        extensionRunner.runAllSpecs();
+    commands.registerCommand('railsTestRunner.runAllTests', () => {
+        extensionRunner.runAllTests();
     });
 
-    commands.registerCommand('extension.runAllSpecsInFolder', () => {
-        console.log('Running all specs in folder');
+    commands.registerCommand('railsTestRunner.runAllTestsInFolder', (fileUri?: Uri) => {
+        extensionRunner.runAllTestsInFolder(fileUri);
     });
 
-    commands.registerCommand('extension.runSpec', () => {
-        extensionRunner.runSpec();
+    commands.registerCommand('railsTestRunner.runAllTestsInFile', () => {
+        extensionRunner.runAllTestsInFile();
     });
 
-    commands.registerCommand('extension.runSpecFromLine', () => {
-        extensionRunner.runSpecFromLine();
+    commands.registerCommand('railsTestRunner.runTestAtLine', () => {
+        extensionRunner.runTestAtLine();
     });
 
-    commands.registerCommand('extension.runLastSpec', () => {
-        extensionRunner.runLastSpec();
+    commands.registerCommand('railsTestRunner.runLastTests', () => {
+        extensionRunner.runLastTests();
     });
+
+    console.log('Rails Test Runner was activated');
 }
 
 export function deactivate(): void {

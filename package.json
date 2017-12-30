@@ -1,72 +1,76 @@
 {
-  "name": "rails-spec-runner",
-  "displayName": "Rails Spec Runner",
-  "description": "Run rspec in your Rails project",
+  "name": "rails-test-runner",
+  "displayName": "Rails Test Runner",
+  "description": "Easily run your rails tests from within Visual Studio Code (vscode)",
   "version": "0.0.1",
   "publisher": "pallinder",
   "engines": {
     "vscode": "^1.19.0"
   },
-  "categories": ["Other", "Languages"],
+  "categories": [
+    "Other",
+    "Languages"
+  ],
   "keywords": [
-        "rails",
-        "ROR",
-        "Ruby on Rails",
-        ".erb",
-        "rspec",
-        "test"
-    ],
+    "rails",
+    "ROR",
+    "Ruby on Rails",
+    "rspec",
+    "minitest",
+    "cucumber",
+    "test"
+  ],
   "activationEvents": [
     "workspaceContains:bin/rails",
     "workspaceContains:script/rails"
   ],
-  "main": "./out/extension",
+  "main": "./out/rails_test_runner",
   "contributes": {
     "commands": [
       {
-        "command": "extension.runAllSpecs",
-        "title": "Run all specs"
+        "command": "railsTestRunner.runAllTests",
+        "title": "Rails Test Runner: Run all Tests"
       },
       {
-        "command": "extension.runAllSpecsInFolder",
-        "title": "Run all specs in folder"
+        "command": "railsTestRunner.runAllTestsInFolder",
+        "title": "Rails Test Runner: Run all tests in folder"
       },
       {
-        "command": "extension.runSpec",
-        "title": "Run all specs in file"
+        "command": "railsTestRunner.runAllTestsInFile",
+        "title": "Rails Test Runner: Run all tests in file"
       },
       {
-        "command": "extension.runSpecFromLine",
-        "title": "Run specs starting from the current line"
+        "command": "railsTestRunner.runTestAtLine",
+        "title": "Rails Test Runner: Run tests starting from the current line"
       },
       {
-        "command": "extension.runLastSpec",
-        "title": "Run the last spec(s) again"
+        "command": "railsTestRunner.runLastTests",
+        "title": "Rails Test Runner: Run the last test(s) again"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "when": "resourceLangId == ruby",
-          "command": "extension.runSpec",
-          "group": "railsSpecRunner@1"
+          "command": "railsTestRunner.runAllTestsInFile",
+          "group": "railsTestRunner@1"
         },
         {
           "when": "explorerResourceIsFolder",
-          "command": "extension.runAllSpecsInFolder",
-          "group": "railsSpecRunner@2"
+          "command": "railsTestRunner.runAllTestsInFolder",
+          "group": "railsTestRunner@2"
         }
       ],
       "editor/context": [
         {
           "when": "resourceLangId == ruby",
-          "command": "extension.runSpec",
-          "group": "railsSpecRunner@1"
+          "command": "railsTestRunner.runAllTestsInFile",
+          "group": "railsTestRunner@1"
         },
         {
           "when": "resourceLangId == ruby",
-          "command": "extension.runSpecFromLine",
-          "group": "railsSpecRunner@2"
+          "command": "railsTestRunner.runTestAtLine",
+          "group": "railsTestRunner@2"
         }
       ]
     }
@@ -82,9 +86,8 @@
     "typescript": "^2.6.1",
     "vscode": "^1.1.6",
     "@types/node": "^7.0.43",
-    "@types/mocha": "^2.2.42"
-  },
-  "dependencies": {
+    "@types/mocha": "^2.2.42",
+    "expect.js": "^0.3.1",
     "prettier": "^1.9.2",
     "tslint": "^5.8.0",
     "tslint-config-airbnb": "^5.4.2"

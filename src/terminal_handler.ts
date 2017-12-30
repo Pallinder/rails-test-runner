@@ -27,7 +27,7 @@ export default class TerminalHandler {
 
   createTerminal(): vscode.Terminal {
     return(vscode.window.createTerminal(
-      'Spec runner',
+      'Rails Test Runner',
     ));
   }
 }

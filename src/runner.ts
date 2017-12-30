@@ -10,22 +10,22 @@ export default class Runner {
     this.stateHandler = stateHandler;
     this.terminalHandler = terminalHandler;
   }
-  runAllSpecs(): void {
-    this.runCommand('./specs');
+  runAllTests(): void {
+    this.runTests('');
   }
 
-  runAllSpecsInFolder(fileURI: Uri): void {
-    console.log('Got uri', fileURI);
+  runAllTestsInFolder(fileUri: Uri): void {
+    this.runTests(fileUri.fsPath);
   }
 
-  runSpec(): void {
+  runAllTestsInFile(): void {
     const fileName = this.retrieveFileName();
-    this.runCommand(fileName);
+    this.runTests(fileName);
   }
 
-  runLastSpec(): void {
+  runLastTests(): void {
     if (this.stateHandler.get('lastFile')) {
-      this.runCommand(this.stateHandler.get('lastFile'));
+      this.runTests(this.stateHandler.get('lastFile'));
     } else {
       window.showInformationMessage(
         'Couldnt run the last spec again since no spec has been run.',
@@ -33,9 +33,9 @@ export default class Runner {
     }
   }
 
-  runSpecFromLine(): void {
+  runTestAtLine(): void {
     const fileName = this.retrieveFileName(true);
-    this.runCommand(fileName);
+    this.runTests(fileName);
   }
 
   retrieveFileName(retrieveLineNumber?: boolean): string {
@@ -60,11 +60,11 @@ export default class Runner {
     return fileName;
   }
 
-  runCommand(fileName: string): void {
+  runTests(path: string): void {
     const terminal = this.terminalHandler.retrieveTerminal();
-    const command = `bundle exec rspec ${fileName}`;
+    const command = `bundle exec rspec ${path}`;
 
-    this.stateHandler.set('lastFile', fileName);
+    this.stateHandler.set('lastFile', path);
 
     terminal.show();
     terminal.sendText(command);

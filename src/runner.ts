@@ -3,12 +3,14 @@ import state_handler from './state_handler';
 import terminal_handler from './terminal_handler';
 
 export default class Runner {
+  command: string;
   stateHandler: state_handler;
   terminalHandler: terminal_handler;
 
-  constructor(stateHandler: state_handler, terminalHandler: terminal_handler) {
+  constructor(stateHandler: state_handler, terminalHandler: terminal_handler, command: string) {
     this.stateHandler = stateHandler;
     this.terminalHandler = terminalHandler;
+    this.command = command;
   }
   runAllTests(): void {
     this.runTests('');
@@ -62,11 +64,11 @@ export default class Runner {
 
   runTests(path: string): void {
     const terminal = this.terminalHandler.retrieveTerminal();
-    const command = `bundle exec rspec ${path}`;
+    const commandToRun = `${this.command} ${path}`;
 
     this.stateHandler.set('lastFile', path);
 
     terminal.show();
-    terminal.sendText(command);
+    terminal.sendText(commandToRun);
   }
 }

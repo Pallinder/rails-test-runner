@@ -17,6 +17,17 @@ minitest, rspec or cucumber.
 The extension currently only supports rspec but should eventually
 support the most popular test runners.
 
+## Configuration
+### railsTestRunner.rspecCommand
+Configures what command will be used to execute the tests
+
+* Type: `string`
+* Default: `bundle exec rspec`
+
+## Features
+The extension currently only supports rspec but should eventually
+support the most popular test runners.
+
 ### Run all tests in the currently opened file
 cmd-shift-p `railsTestRunner.runAllTestsInFile`
 
@@ -36,9 +47,24 @@ Right click on folder in explorer menu and select `Rails Test Runner: Run all te
 ### Run all tests
 cmd-shift-p `railsTestRunner.runAllTests`
 
-### 0.0.1
 
-Initial release
+## Keybindings
+To change your keyboard shortcuts, paste the rules in `Code -> Preferences -> Keyboard Shortcuts -> keybindings.json`:
+
+```json
+{
+  "key": "cmd+shift+f",
+  "command": "railsTestRunner.runAllTestsInFile"
+},
+{
+    "key": "cmd+shift+l",
+    "command": "railsTestRunner.runTestAtLine"
+},
+{
+    "key": "cmd+shift+y",
+    "command": "railsTestRunner.runLastTests"
+},
+```
 
 ### Todo
 - [x] Support rspec

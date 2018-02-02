@@ -6,11 +6,13 @@ export default class Runner {
   command: string;
   stateHandler: state_handler;
   terminalHandler: terminal_handler;
+  focusTerminal: boolean;
 
-  constructor(stateHandler: state_handler, terminalHandler: terminal_handler, command: string) {
+  constructor(stateHandler: state_handler, terminalHandler: terminal_handler, command: string, focusTerminal: boolean) {
     this.stateHandler = stateHandler;
     this.terminalHandler = terminalHandler;
     this.command = command;
+    this.focusTerminal = focusTerminal;
   }
   runAllTests(): void {
     this.runTests('');
@@ -68,7 +70,7 @@ export default class Runner {
 
     this.stateHandler.set('lastFile', path);
 
-    terminal.show();
+    terminal.show(!this.focusTerminal);
     terminal.sendText(commandToRun);
   }
 }

@@ -2,7 +2,7 @@
   "name": "rails-test-runner",
   "displayName": "Rails Test Runner",
   "description": "Easily run your rails tests from within Visual Studio Code (vscode)",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "davidpallinder",
   "repository": "https://github.com/Pallinder/rails-test-runner",
   "icon": "images/rails.png",

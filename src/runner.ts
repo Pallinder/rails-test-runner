@@ -1,18 +1,16 @@
-import { window, Terminal, Position, Uri } from 'vscode';
+import { window, Terminal, Position, Uri, WorkspaceConfiguration, commands } from 'vscode';
 import state_handler from './state_handler';
 import terminal_handler from './terminal_handler';
 
 export default class Runner {
-  command: string;
+  config: WorkspaceConfiguration;
   stateHandler: state_handler;
   terminalHandler: terminal_handler;
-  focusTerminal: boolean;
 
-  constructor(stateHandler: state_handler, terminalHandler: terminal_handler, command: string, focusTerminal: boolean) {
+  constructor(stateHandler: state_handler, terminalHandler: terminal_handler, config: WorkspaceConfiguration) {
     this.stateHandler = stateHandler;
     this.terminalHandler = terminalHandler;
-    this.command = command;
-    this.focusTerminal = focusTerminal;
+    this.config = config;
   }
   runAllTests(): void {
     this.runTests('');
@@ -35,6 +33,11 @@ export default class Runner {
         'Couldnt run the last spec again since no spec has been run.',
       );
     }
+  }
+
+  runLastFailedTests(): void {
+    const fileName = this.retrieveFileName();
+    this.runTests('', '--only-failures');
   }
 
   runTestAtLine(): void {
@@ -64,13 +67,38 @@ export default class Runner {
     return fileName;
   }
 
-  runTests(path: string): void {
+  runTests(path: string, commandLineArguments:string = ''): void {
+    let commandToRun = '';
+
+    if (this.shouldFailFast()) {
+      commandToRun = `${this.command()} ${commandLineArguments} --fail-fast --order ${path}`;
+    } else {
+      commandToRun = `${this.command()} ${commandLineArguments} ${path}`;
+    }
     const terminal = this.terminalHandler.retrieveTerminal();
-    const commandToRun = `${this.command} ${path}`;
 
     this.stateHandler.set('lastFile', path);
 
-    terminal.show(!this.focusTerminal);
+    terminal.show(!this.shouldFocusTerminal);
+    if (this.shouldClearTerminal()) {
+      this.terminalHandler.clearTerminal();
+    }
     terminal.sendText(commandToRun);
+  }
+
+  command(): string {
+    return this.config.get<string>('rspecCommand');
+  }
+
+  shouldFailFast(): boolean {
+    return this.config.get<boolean>('rspec.failFast');
+  }
+
+  shouldFocusTerminal(): boolean {
+    return this.config.get<boolean>('focusTerminal');
+  }
+
+  shouldClearTerminal(): boolean {
+    return this.config.get<boolean>('clearTerminal');
   }
 }

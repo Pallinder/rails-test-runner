@@ -30,5 +30,9 @@ export default class TerminalHandler {
       'Rails Test Runner',
     ));
   }
+
+  clearTerminal(): void {
+    vscode.commands.executeCommand('workbench.action.terminal.clear');
+  }
 }
 

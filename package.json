@@ -29,16 +29,24 @@
       "type": "object",
       "title": "Rails Test Runner Configuration",
       "properties": {
-          "railsTestRunner.rspecCommand": {
-            "default": "bundle exec rspec",
-            "description": "Specifies the command to use when running rspec tests",
-            "type": ["string"]
-          },
-          "railsTestRunner.focusTerminal": {
-            "default": true,
-            "description": "Defines if it should focus on terminal on each spec run",
-            "type": ["boolean"]
-          }
+        "railsTestRunner.rspecCommand": {
+          "default": "bundle exec rspec",
+          "description": "Specifies the command to use when running rspec tests",
+          "type": ["string"]
+        },
+        "railsTestRunner.focusTerminal": {
+          "default": true,
+          "description": "Should the terminal be focused on each run?",
+          "type": ["boolean"]
+        },
+        "railsTestRunner.clearTerminal": {
+          "default": true,
+          "description": "Should the terminal be cleared before each run?"
+        },
+        "railsTestRunner.rspec.failFast": {
+          "default": false,
+          "description": "Should rspec stop after encountering a failed test?"
+        }
       }
     },
     "commands": [
@@ -61,6 +69,10 @@
       {
         "command": "railsTestRunner.runLastTests",
         "title": "Rails Test Runner: Run the last test(s) again"
+      },
+      {
+        "command": "railsTestRunner.runLastFailedTests",
+        "title": "Rails Test Runner: Run the last failing test(s) again"
       }
     ],
     "menus": {

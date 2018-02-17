@@ -10,14 +10,11 @@ const terminalHandler = new terminal_handler();
 
 export function activate(context: ExtensionContext): void {
     const stateHandler = new state_handler(context.workspaceState);
-    const command = workspace.getConfiguration('railsTestRunner').get<string>('rspecCommand');
-    const focusTerminal = workspace.getConfiguration('railsTestRunner').get<boolean>('focusTerminal');
-
+    const configuration = workspace.getConfiguration('railsTestRunner');
     const extensionRunner = new runner(
         stateHandler,
         terminalHandler,
-        command,
-        focusTerminal,
+        configuration,
     );
 
     window.onDidCloseTerminal((terminal: Terminal) => {
@@ -42,6 +39,10 @@ export function activate(context: ExtensionContext): void {
 
     commands.registerCommand('railsTestRunner.runLastTests', () => {
         extensionRunner.runLastTests();
+    });
+
+    commands.registerCommand('railsTestRunner.runLastFailedTests', () => {
+        extensionRunner.runLastFailedTests();
     });
 
     console.log('Rails Test Runner was activated');

@@ -24,6 +24,26 @@ Configures what command will be used to execute the tests
 * Type: `string`
 * Default: `bundle exec rspec`
 
+### railsTestRunner.clearTerminal
+If set to true (default) the temrinal will be cleared on each new run.
+
+* Type: `boolean`
+* Default: true
+
+### railsTestRunner.focusTerminal
+If set to true (default) the temrinal will be focused when a test run is being initiated
+
+* Type: `boolean`
+* Default: true
+
+
+### railsTestRunner.railsTestRunner.rspec.failFast
+If set to true rspec will be run with --fail-fast meaning that execution will stop after
+first failed test is encountered (great to use in combination with running only failed tests)
+
+* Type: `boolean`
+* Default: false
+
 ## Features
 The extension currently only supports rspec but should eventually
 support the most popular test runners.
@@ -47,6 +67,12 @@ Right click on folder in explorer menu and select `Rails Test Runner: Run all te
 ### Run all tests
 cmd-shift-p `railsTestRunner.runAllTests`
 
+### Run only failing tests
+For this to work you need to also configure your rspec setup to support
+saving the last failures to a text file. Please take a look at: https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
+
+After that is done simply run the command and you should only be running failed tests.
+cmd-shift-p `railsTestRunner.runLastFailedTests`
 
 ## Keybindings
 To change your keyboard shortcuts, paste the rules in `Code -> Preferences -> Keyboard Shortcuts -> keybindings.json`:
@@ -64,6 +90,11 @@ To change your keyboard shortcuts, paste the rules in `Code -> Preferences -> Ke
     "key": "cmd+shift+y",
     "command": "railsTestRunner.runLastTests"
 },
+{
+    "key": "cmd+shift+r",
+    "command": "railsTestRunner.runLastFailedTests"
+},
+
 ```
 
 ### Todo

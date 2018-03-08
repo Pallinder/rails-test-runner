@@ -79,7 +79,7 @@ export default class Runner {
 
     this.stateHandler.set('lastFile', path);
 
-    terminal.show(!this.shouldFocusTerminal);
+    terminal.show(!this.shouldFocusTerminal());
     if (this.shouldClearTerminal()) {
       this.terminalHandler.clearTerminal();
     }

@@ -25,13 +25,13 @@ Configures what command will be used to execute the tests
 * Default: `bundle exec rspec`
 
 ### railsTestRunner.clearTerminal
-If set to true (default) the temrinal will be cleared on each new run.
+If set to true (default) the terminal will be cleared on each new run.
 
 * Type: `boolean`
 * Default: true
 
 ### railsTestRunner.focusTerminal
-If set to true (default) the temrinal will be focused when a test run is being initiated
+If set to true (default) the terminal will be focused when a test run is being initiated
 
 * Type: `boolean`
 * Default: true
